@@ -1,0 +1,12 @@
+[package]
+name = "rib-core"
+version.workspace = true
+edition.workspace = true
+description = "Shared poker domain types for Run It Back: cards, ranges, actions, board, positions."
+
+[dependencies]
+serde = { workspace = true }
+serde_json = { workspace = true }
+thiserror = { workspace = true }
+rand = { workspace = true }
+uuid = { workspace = true }

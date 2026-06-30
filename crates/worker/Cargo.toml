@@ -1,0 +1,19 @@
+[package]
+name = "rib-worker"
+version.workspace = true
+edition.workspace = true
+description = "Dynamic worker pool: a fixed set of OS threads that pull from whichever of the parse-queue or solve-queue has backlog, via crossbeam_channel::select!, so capacity shifts automatically between hand-history parsing and CFR solving instead of being statically partitioned."
+
+[dependencies]
+rib-core = { path = "../core" }
+rib-db = { path = "../db" }
+rib-parser = { path = "../parser" }
+rib-solver = { path = "../solver" }
+tokio = { workspace = true }
+crossbeam-channel = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+uuid = { workspace = true }
+tracing = { workspace = true }
+anyhow = { workspace = true }
+num_cpus = "1.16"

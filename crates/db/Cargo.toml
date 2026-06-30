@@ -1,0 +1,15 @@
+[package]
+name = "rib-db"
+version.workspace = true
+edition.workspace = true
+description = "PostgreSQL persistence: users, hand history uploads, parsed hands, drill history, weakness profiles, and the precomputed solved-spot cache."
+
+[dependencies]
+rib-core = { path = "../core" }
+sqlx = { version = "0.7", features = ["runtime-tokio-rustls", "postgres", "chrono", "uuid", "json", "migrate"] }
+serde = { workspace = true }
+serde_json = { workspace = true }
+chrono = { workspace = true }
+uuid = { workspace = true }
+anyhow = { workspace = true }
+tracing = { workspace = true }

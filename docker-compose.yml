@@ -1,0 +1,35 @@
+services:
+  db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: runitback
+      POSTGRES_PASSWORD: runitback
+      POSTGRES_DB: runitback
+    volumes:
+      - rib_pgdata:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U runitback"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  app:
+    build: .
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      DATABASE_URL: postgres://runitback:runitback@db:5432/runitback
+      JWT_SECRET: ${JWT_SECRET:-change-me-please-this-is-not-secure}
+      PORT: 8080
+      RIB_WORKERS: "0"
+      RIB_WARM_LIBRARY_ON_START: "1"
+    ports:
+      - "8080:8080"
+
+volumes:
+  rib_pgdata:

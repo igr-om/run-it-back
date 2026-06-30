@@ -1,0 +1,31 @@
+# Fly.io deploy config. See README.md for the full walkthrough (flyctl
+# launch, attaching Postgres, setting secrets).
+app = "run-it-back" # change to something unique
+primary_region = "iad" # pick the region closest to you
+
+[build]
+
+[env]
+PORT = "8080"
+RIB_WORKERS = "0"
+RIB_WARM_LIBRARY_ON_START = "1"
+
+[http_service]
+internal_port = 8080
+force_https = true
+auto_stop_machines = "stop"
+auto_start_machines = true
+min_machines_running = 0
+
+[[vm]]
+cpu_kind = "shared"
+cpus = 1
+memory_mb = 1024
+
+[checks]
+[checks.health]
+type = "http"
+path = "/api/health"
+interval = "15s"
+timeout = "5s"
+grace_period = "20s"

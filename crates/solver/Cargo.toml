@@ -1,0 +1,13 @@
+[package]
+name = "rib-solver"
+version.workspace = true
+edition.workspace = true
+description = "Abstracted-bet-tree CFR+ solver for NLHE preflop and single/double-street postflop subgames. Hand evaluation/equity is delegated to rib-evaluator; this crate implements the actual game-tree search and regret minimization for arbitrary on-demand spots."
+
+[dependencies]
+rib-core = { path = "../core" }
+rib-evaluator = { path = "../evaluator" }
+rand = { workspace = true }
+rayon = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }

@@ -1,0 +1,11 @@
+[package]
+name = "rib-evaluator"
+version.workspace = true
+edition.workspace = true
+description = "Hand evaluation (a from-scratch 5-7 card evaluator, see handrank.rs) and Monte Carlo equity calculation, for both NLHE and Omaha."
+
+[dependencies]
+rib-core = { path = "../core" }
+rand = { workspace = true }
+rayon = { workspace = true }
+serde = { workspace = true }

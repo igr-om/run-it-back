@@ -1,0 +1,16 @@
+[package]
+name = "rib-drills"
+version.workspace = true
+edition.workspace = true
+description = "Adaptive drill generation (weakness-weighted spot selection across preflop and flop-cbet categories) and grading (EV-loss + plain-English explanations) against rib-solver output."
+
+[dependencies]
+rib-core = { path = "../core" }
+rib-db = { path = "../db" }
+rib-solver = { path = "../solver" }
+serde = { workspace = true }
+serde_json = { workspace = true }
+rand = { workspace = true }
+uuid = { workspace = true }
+anyhow = { workspace = true }
+tracing = { workspace = true }

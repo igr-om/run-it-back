@@ -1,0 +1,28 @@
+# Render Blueprint. In the Render dashboard: New -> Blueprint -> point at
+# this repo, and it provisions both services below automatically. See
+# README.md for the full walkthrough.
+databases:
+  - name: run-it-back-db
+    plan: free
+    postgresMajorVersion: "16"
+
+services:
+  - type: web
+    name: run-it-back
+    runtime: docker
+    plan: free
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /api/health
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: run-it-back-db
+          property: connectionString
+      - key: JWT_SECRET
+        generateValue: true
+      - key: PORT
+        value: "8080"
+      - key: RIB_WORKERS
+        value: "0"
+      - key: RIB_WARM_LIBRARY_ON_START
+        value: "1"

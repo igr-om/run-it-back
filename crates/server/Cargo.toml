@@ -1,0 +1,35 @@
+[package]
+name = "rib-server"
+version.workspace = true
+edition.workspace = true
+
+[[bin]]
+name = "run-it-back-server"
+path = "src/main.rs"
+
+[dependencies]
+rib-core = { path = "../core" }
+rib-db = { path = "../db" }
+rib-solver = { path = "../solver" }
+rib-parser = { path = "../parser" }
+rib-worker = { path = "../worker" }
+rib-drills = { path = "../drills" }
+
+tokio = { workspace = true }
+axum = { version = "0.7", features = ["macros"] }
+tower = "0.4"
+tower-http = { version = "0.5", features = ["cors", "trace", "fs"] }
+serde = { workspace = true }
+serde_json = { workspace = true }
+chrono = { workspace = true }
+uuid = { workspace = true }
+anyhow = { workspace = true }
+thiserror = { workspace = true }
+tracing = { workspace = true }
+tracing-subscriber = { workspace = true }
+dotenvy = "0.15"
+
+jsonwebtoken = "9"
+argon2 = "0.5"
+rand = { workspace = true }
+sqlx = { version = "0.7", features = ["postgres"] }
