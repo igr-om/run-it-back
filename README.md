@@ -18,8 +18,6 @@ This is a v1 of a genuinely large project. It's real, working software   not a m
 - **A React + TypeScript frontend**, dark professional theme, served by the same Rust binary in production (no separate static host needed).
 
 ## Architecture
-
-'''
 crates/
   core/        Shared poker types: cards, ranges, positions, actions, bet categorization
   evaluator/   From-scratch hand evaluator (NLHE + Omaha) and Monte Carlo equity
@@ -31,7 +29,6 @@ crates/
   server/      Axum HTTP API, JWT auth, route handlers, static frontend serving
 
 web/           React + Vite + TypeScript SPA
-'''
 
 Everything talks to Postgres through 'rib-db'; nothing else touches SQL directly. The solver and evaluator have zero knowledge of HTTP, Postgres, or each other's callers   'rib-server' is the only crate that wires HTTP requests to the rest.
 
